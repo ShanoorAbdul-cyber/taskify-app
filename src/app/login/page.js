@@ -1,9 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import styles from "./login.module.scss";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import { useUser } from "../components/UserContext";
+
+import styles from "./login.module.scss";
+
 
 export default function LoginPage() {
   const router = useRouter();
@@ -11,6 +14,7 @@ export default function LoginPage() {
     email: "",
     password: "",
   });
+  const { login } = useUser();
 
   const handleChange = (e) => {
     setForm({
@@ -33,6 +37,7 @@ export default function LoginPage() {
 
       if (res.status === 200) {
         localStorage.setItem("token", data.token);
+        login(data)
         toast.success(data.message || "Login successful");
         router.push("/pages/tasks");
       } else {

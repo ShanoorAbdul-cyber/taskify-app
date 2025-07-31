@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import { useRouter, usePathname } from "next/navigation";
 import { toast } from "react-toastify";
 
 let logoutTimer;
 export default function AuthGuard({ children }) {
+  const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
   const pathname = usePathname();
 
@@ -32,6 +33,7 @@ export default function AuthGuard({ children }) {
             toast.error("Session expired. Please log in again.");
             router.push("/login");
           }, timeUntilExpiry);
+          setIsLoading(false); // Valid token
         }
       } catch (err) {
         localStorage.removeItem("token");
@@ -45,6 +47,7 @@ export default function AuthGuard({ children }) {
       if (logoutTimer) clearTimeout(logoutTimer);
     };
   }, [pathname]);
+  if (isLoading) return null;
 
   return <>{children}</>;
 }

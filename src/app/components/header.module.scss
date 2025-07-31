@@ -1,0 +1,63 @@
+.mainDiv {
+  display: flex;
+//   justify-content: space-between;
+  gap: 75rem;
+  align-items: center;
+  width: 100%;
+  position: fixed;
+  padding: 1rem;
+  background-color: aqua;
+}
+
+.projectName {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: black;
+}
+
+.sidediv {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  .username {
+    color: red;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  .icon {
+    background-color: green;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+  }
+
+  .dropdown {
+  position: absolute;
+  top: 5rem;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 0.25rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  min-width: 150px;
+}
+
+.menuItem {
+  color: black;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+// .menuItem:hover {
+//   background: var(--color-bg);
+// }
+}
